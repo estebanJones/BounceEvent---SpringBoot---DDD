@@ -16,6 +16,7 @@ import bounceevent.domain.entities.Personne;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoResponse;
+import bounceevent.infrastructure.poco.UtilisateurPoco;
 import bounceevent.infrastructure.services.UtilisateurService;
 
 @RestController
@@ -28,12 +29,17 @@ public class InscriptionController {
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody @Valid RegisterDtoRequest dtoRequest, BindingResult resValid) {
 		if(!resValid.hasErrors()) {
-			Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
-			Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
-			RegisterDtoResponse response = new RegisterDtoResponse(utilisateur);
-			return ResponseEntity.ok(response);
+			if(UtilisateurPoco.checkIfDtoIsNotBlank(dtoRequest)) {
+				Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
+				Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
+				RegisterDtoResponse response = new RegisterDtoResponse(utilisateur);
+				
+				return ResponseEntity.ok(response);
+			} else {
+				return ResponseEntity.badRequest().body("Veuillez remplir les champs correctement");
+			}
 		} else {
-			return ResponseEntity.badRequest().body("Une erreur dans l'inscription est survenue");
+			return ResponseEntity.badRequest().body("Une erreur est survenue");
 		}
 	}
 }

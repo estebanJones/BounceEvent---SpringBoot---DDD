@@ -24,25 +24,9 @@ public class ConnectionService {
 	@Autowired
 	UtilisateurRepository utilisateurRepository;
 	
-	
-	@PostMapping("/connection")
-	public ResponseEntity<?> connection(@Valid @RequestBody DtoConnectionRequest dtoRequest, BindingResult resValid) throws Exception {
-		DtoConnectionResponse response = null;
-		if(!resValid.hasErrors()) {
-			Utilisateur utilisateur = this.verificationConnection(dtoRequest.getEmail(), dtoRequest.getPassword());
-			response = new DtoConnectionResponse("Token de réussite " + utilisateur);
-			return ResponseEntity.ok().body(response);
-		} else {
-			return ResponseEntity.badRequest().body("Une erreur est survenue lors de la connection");
-		}
-	}
-	
 	public Utilisateur verificationConnection(String email, String password) throws Exception {
-		System.out.println("email " + email + " pass " + password);
 		Optional<Utilisateur> utilisateur = this.utilisateurRepository.findByEmailAndPassword(email, password);
-		System.out.println("utilisateur " + utilisateur);
 		if(!utilisateur.isEmpty()) {
-			System.out.println("dans if");
 			return utilisateur.get();
 		} else {
 			throw new UserNotFoundException("Email ou mot de passe incorrect");
