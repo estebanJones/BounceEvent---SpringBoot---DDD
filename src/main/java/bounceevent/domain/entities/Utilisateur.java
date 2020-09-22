@@ -20,12 +20,13 @@ public class Utilisateur extends Personne {
 		super();
 	}
 
-	public Utilisateur(String username, String password, String email, String numeroPortable) {
-		super();
+	public Utilisateur(String nom, String prenom, Integer age, String username, String password, String email, String numeroPortable) {
+		super(nom, prenom, age);
 		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.numeroPortable = numeroPortable;
+		
 	}
 
 

@@ -16,11 +16,19 @@ public class UtilisateurService {
 	UtilisateurRepository utilisateurRepository;
 	
 	public Utilisateur insertUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
-		this.personneService.insertPersonne(personne);
-		Utilisateur utilisateur = new Utilisateur(registerDto.getUsername(), registerDto.getPassword(), registerDto.getEmail(), registerDto.getNumeroPortable());
-		utilisateur.setPersonne(personne);
+		Utilisateur utilisateur = this.createUtilisateur(registerDto, personne);
 		return this.utilisateurRepository.save(utilisateur);
 	}
 	
-	
+	private Utilisateur createUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
+		return new Utilisateur(
+				personne.getNom(), 
+			    personne.getPrenom(), 
+			    personne.getAge(), 
+			    registerDto.getUsername(), 
+			    registerDto.getPassword(), 
+			    registerDto.getEmail(), 
+			    registerDto.getNumeroPortable()
+		);
+	}
 }

@@ -28,9 +28,7 @@ public class InscriptionController {
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody @Valid RegisterDtoRequest dtoRequest, BindingResult resValid) {
 		if(!resValid.hasErrors()) {
-			System.out.println("hheloo ?");
 			Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
-
 			Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
 			RegisterDtoResponse response = new RegisterDtoResponse(utilisateur);
 			return ResponseEntity.ok(response);
