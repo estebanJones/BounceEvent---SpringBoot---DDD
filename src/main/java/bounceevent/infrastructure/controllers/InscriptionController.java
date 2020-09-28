@@ -17,6 +17,8 @@ import bounceevent.domain.entities.Personne;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoResponse;
+import bounceevent.infrastructure.exception.FormulaireIncompletException;
+import bounceevent.infrastructure.exception.RequeteErreurException;
 import bounceevent.infrastructure.poco.UtilisateurPoco;
 import bounceevent.infrastructure.services.UtilisateurService;
 
@@ -43,10 +45,10 @@ public class InscriptionController {
 				
 				return ResponseEntity.ok(response);
 			} else {
-				return ResponseEntity.badRequest().body("Veuillez remplir les champs correctement");
+				return ResponseEntity.badRequest().body(new FormulaireIncompletException("Veuillez remplir les champs correctement");
 			}
 		} else {
-			return ResponseEntity.badRequest().body("Une erreur est survenue");
+			return ResponseEntity.badRequest().body(new RequeteErreurException("Une erreur est survenue"));
 		}
 	}
 }
