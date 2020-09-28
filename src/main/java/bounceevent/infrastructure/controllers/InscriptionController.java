@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import bounceevent.infrastructure.poco.UtilisateurPoco;
 import bounceevent.infrastructure.services.UtilisateurService;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/bounce_event")
 public class InscriptionController {
 	private Logger LOG = LoggerFactory.getLogger(InscriptionController.class);
@@ -29,7 +31,7 @@ public class InscriptionController {
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody @Valid RegisterDtoRequest dtoRequest, BindingResult resValid) {
 		if(!resValid.hasErrors()) {
-			if(UtilisateurPoco.checkIfDtoIsNotBlank(dtoRequest)) {
+			if(UtilisateurPoco.controleInscriptionProprietes(dtoRequest)) {
 				Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
 				Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
 				RegisterDtoResponse response = new RegisterDtoResponse(utilisateur);

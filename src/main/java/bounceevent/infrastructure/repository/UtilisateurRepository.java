@@ -8,4 +8,6 @@ import bounceevent.domain.entities.Utilisateur;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
 	public Optional<Utilisateur> findByEmailAndPassword(String email, String password);
+	public Optional<Utilisateur> findByUsername(String username);
+	public Optional<Utilisateur> findByEmail(String email);
 }	

@@ -1,5 +1,7 @@
 package bounceevent.infrastructure.services;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,10 @@ public class UtilisateurService {
 		Utilisateur utilisateur = this.createUtilisateur(registerDto, personne);
 		return this.utilisateurRepository.save(utilisateur);
 	}
-
+	
+	public Optional<Utilisateur> rechercherUtilisateurParEmail(String email) {
+		return this.utilisateurRepository.findByEmail(email);
+	}
 	private Utilisateur createUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
 		return new Utilisateur(
 				personne.getNom(), 
