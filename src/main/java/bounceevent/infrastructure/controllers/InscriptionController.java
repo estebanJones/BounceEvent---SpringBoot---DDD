@@ -25,13 +25,18 @@ import bounceevent.infrastructure.services.UtilisateurService;
 @RequestMapping("/bounce_event")
 public class InscriptionController {
 	private Logger LOG = LoggerFactory.getLogger(InscriptionController.class);
+	private UtilisateurService utilisateurService;
+	private  UtilisateurPoco poco;
 	
-	@Autowired
-	UtilisateurService utilisateurService;
+	public InscriptionController(UtilisateurService utilisateurService, UtilisateurPoco poco) {
+		this.poco = poco;
+		this.utilisateurService = utilisateurService;
+	}
+	
 	@PostMapping("/register")
 	public ResponseEntity<?> register(@RequestBody @Valid RegisterDtoRequest dtoRequest, BindingResult resValid) {
 		if(!resValid.hasErrors()) {
-			if(UtilisateurPoco.controleInscriptionProprietes(dtoRequest)) {
+			if(this.poco.controleInscriptionProprietes(dtoRequest)) {
 				Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
 				Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
 				RegisterDtoResponse response = new RegisterDtoResponse(utilisateur);
