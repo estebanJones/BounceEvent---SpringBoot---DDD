@@ -28,7 +28,7 @@ public class ConnectionController {
 	public ResponseEntity<?> connection(@Valid @RequestBody DtoConnectionRequest dtoRequest, BindingResult resValid) throws Exception {
 		if(!resValid.hasErrors()) {
 			 Utilisateur utilisateur = this.connectionService.verificationConnection(dtoRequest.getEmail(), dtoRequest.getPassword());
-			 DtoConnectionResponse response = new DtoConnectionResponse("Token de réussite " + utilisateur.getId());
+			 DtoConnectionResponse response = new DtoConnectionResponse("Token de réussite ", utilisateur.getId());
 			return ResponseEntity.ok().body(response);
 		} else {
 			return ResponseEntity.badRequest().body(new UserNotFoundException("Email ou mot de passe incorrect").getMessage());
