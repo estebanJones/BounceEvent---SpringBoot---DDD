@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bounceevent.domain.entities.Personne;
@@ -14,10 +14,11 @@ import bounceevent.infrastructure.repository.UtilisateurRepository;
 
 @Service
 public class UtilisateurService {
-	@Autowired
-	PersonneService personneService;
-	@Autowired
-	UtilisateurRepository utilisateurRepository;
+	private UtilisateurRepository utilisateurRepository;
+	
+	public UtilisateurService(UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
+		this.utilisateurRepository = utilisateurRepository;
+	}
 	
 	@Transactional
 	public Utilisateur insertUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
@@ -39,4 +40,6 @@ public class UtilisateurService {
 			    registerDto.getNumeroPortable()
 		);
 	}
+	
+
 }
