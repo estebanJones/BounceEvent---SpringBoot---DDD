@@ -17,6 +17,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public SecurityConfiguration(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
 	}
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(this.userDetailsService);
@@ -30,7 +31,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.antMatchers("/profil").hasAnyRole("ADMIN", "USER")
 			.antMatchers("/").permitAll()
 			.and().formLogin();
-			
 	}
 	
 	

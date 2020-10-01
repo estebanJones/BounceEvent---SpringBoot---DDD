@@ -28,6 +28,7 @@ public class ConnectionController {
 	}
 	
 	@PostMapping("/login")
+	@CrossOrigin(origins = "http://localhost:4200")
 	public ResponseEntity<?> connection(@Valid @RequestBody DtoConnectionRequest dtoRequest, BindingResult resValid) throws Exception {
 		if(!resValid.hasErrors()) {
 			 Utilisateur utilisateur = this.connectionService.verificationConnection(dtoRequest.getEmail(), dtoRequest.getPassword());
