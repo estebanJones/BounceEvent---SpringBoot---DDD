@@ -11,7 +11,7 @@ public class Utilisateur extends Personne {
 	private String password;
 	private String email;
 	private String numeroPortable;
-	private String roles;
+	private String roles = "USER";
 	private boolean active;
 	
 	@OneToOne
