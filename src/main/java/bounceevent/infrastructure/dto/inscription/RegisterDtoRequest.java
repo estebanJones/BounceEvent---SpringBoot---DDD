@@ -9,6 +9,11 @@ public class RegisterDtoRequest {
 	private String password;
 	private String username;
 	
+	
+	public RegisterDtoRequest() {
+
+	}
+	
 	public RegisterDtoRequest(Integer age, String nom, String prenom, String email, String numeroPortable,
 			String password, String username) {
 		this.age = age;

@@ -12,6 +12,11 @@ public class RegisterDtoResponse {
 		this.email = utilisateur.getEmail();
 		this.numeroPortable = utilisateur.getNumeroPortable();
 	}
+	
+	
+	public RegisterDtoResponse() {
+	}
+
 
 	public String getUsername() {
 		return username;

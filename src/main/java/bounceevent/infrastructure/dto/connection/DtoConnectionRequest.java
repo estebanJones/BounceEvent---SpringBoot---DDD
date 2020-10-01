@@ -11,6 +11,10 @@ public class DtoConnectionRequest {
 		this.resterConnecter = resterConnecter;
 	}
 
+	public DtoConnectionRequest() {
+		
+	}
+	
 	public String getEmail() {
 		return email;
 	}
