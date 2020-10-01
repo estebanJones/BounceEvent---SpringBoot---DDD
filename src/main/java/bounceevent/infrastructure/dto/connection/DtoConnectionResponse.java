@@ -6,6 +6,10 @@ public class DtoConnectionResponse {
 	private String email;
 	private Integer utilisateurId;
 	
+	public DtoConnectionResponse() {
+		
+	}
+	
 	public DtoConnectionResponse(String tokenConnection, String username, Integer utilisateurId, String email) {
 		this.tokenConnection = tokenConnection;
 		this.username = username;
