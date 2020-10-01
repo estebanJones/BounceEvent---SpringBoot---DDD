@@ -27,7 +27,7 @@ public class ConnectionController {
 		this.connectionService = connectionService;
 	}
 	
-	@PostMapping("/login")
+	@PostMapping("/connection")
 	public ResponseEntity<?> connection(@Valid @RequestBody DtoConnectionRequest dtoRequest, BindingResult resValid) throws Exception {
 		if(!resValid.hasErrors()) {
 			 Utilisateur utilisateur = this.connectionService.verificationConnection(dtoRequest.getEmail(), dtoRequest.getPassword());
