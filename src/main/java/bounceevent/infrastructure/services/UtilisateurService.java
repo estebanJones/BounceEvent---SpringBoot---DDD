@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bounceevent.domain.entities.Personne;
@@ -16,7 +15,7 @@ import bounceevent.infrastructure.repository.UtilisateurRepository;
 public class UtilisateurService {
 	private UtilisateurRepository utilisateurRepository;
 	
-	public UtilisateurService(UtilisateurRepository utilisateurRepository, PasswordEncoder passwordEncoder) {
+	public UtilisateurService(UtilisateurRepository utilisateurRepository) {
 		this.utilisateurRepository = utilisateurRepository;
 	}
 	

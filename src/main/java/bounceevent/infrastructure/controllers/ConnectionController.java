@@ -21,10 +21,13 @@ import bounceevent.infrastructure.services.ConnectionService;
 @CrossOrigin
 @RequestMapping("/bounce_event")
 public class ConnectionController {
-	@Autowired
-	ConnectionService connectionService;
+	private ConnectionService connectionService;
 	
-	@PostMapping("/connection")
+	public ConnectionController(ConnectionService connectionService) {
+		this.connectionService = connectionService;
+	}
+	
+	@PostMapping("/login")
 	public ResponseEntity<?> connection(@Valid @RequestBody DtoConnectionRequest dtoRequest, BindingResult resValid) throws Exception {
 		if(!resValid.hasErrors()) {
 			 Utilisateur utilisateur = this.connectionService.verificationConnection(dtoRequest.getEmail(), dtoRequest.getPassword());

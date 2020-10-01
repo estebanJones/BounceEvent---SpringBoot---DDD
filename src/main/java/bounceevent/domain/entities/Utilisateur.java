@@ -11,6 +11,8 @@ public class Utilisateur extends Personne {
 	private String password;
 	private String email;
 	private String numeroPortable;
+	private String roles;
+	private boolean active;
 	
 	@OneToOne
 	private Personne personne;
@@ -26,7 +28,6 @@ public class Utilisateur extends Personne {
 		this.password = password;
 		this.email = email;
 		this.numeroPortable = numeroPortable;
-		
 	}
 
 
@@ -70,6 +71,24 @@ public class Utilisateur extends Personne {
 	public void setPersonne(Personne personne) {
 		this.personne = personne;
 	}
+
+	public String getRoles() {
+		return roles;
+	}
+
+	public void setRoles(String roles) {
+		this.roles = roles;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	
 	
 	
 }
