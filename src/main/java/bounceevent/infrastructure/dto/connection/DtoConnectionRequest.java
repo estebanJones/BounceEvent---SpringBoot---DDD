@@ -1,26 +1,27 @@
 package bounceevent.infrastructure.dto.connection;
 
 public class DtoConnectionRequest {
-	private String email;
+	private String username;
 	private String password;
 	private boolean resterConnecter;
 	
-	public DtoConnectionRequest(String email, String password, boolean resterConnecter) {
-		this.email = email;
+	public DtoConnectionRequest(String username, String password, boolean resterConnecter) {
+		super();
+		this.username = username;
 		this.password = password;
 		this.resterConnecter = resterConnecter;
 	}
 
 	public DtoConnectionRequest() {
-		
-	}
-	
-	public String getEmail() {
-		return email;
+		super();
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -38,4 +39,6 @@ public class DtoConnectionRequest {
 	public void setResterConnecter(boolean resterConnecter) {
 		this.resterConnecter = resterConnecter;
 	}
+	
+	
 }
