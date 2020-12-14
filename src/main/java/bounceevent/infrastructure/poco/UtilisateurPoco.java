@@ -22,7 +22,6 @@ public class UtilisateurPoco {
 	}
 	
 	public boolean controleInscriptionProprietes(RegisterDtoRequest dtoRequest) {
-		System.out.println("dto " + dtoRequest.getUsername());
 		return (this.checkIfDtoIsNotBlank(dtoRequest) && 
 				this.checkEmailSyntaxe(dtoRequest) 			&&
 				this.checkIfUsernameNotExiste(dtoRequest)&&
@@ -38,7 +37,7 @@ public class UtilisateurPoco {
 
 	private boolean checkIfUsernameNotExiste(RegisterDtoRequest dtoRequest) {
 		Optional<Utilisateur> utilisateur = this.utilisateurRepository.findByUsername(dtoRequest.getUsername());
-	
+
 			return (!utilisateur.isPresent()) ? true : false;			
 		
 	}

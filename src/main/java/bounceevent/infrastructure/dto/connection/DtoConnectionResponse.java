@@ -4,13 +4,13 @@ public class DtoConnectionResponse {
 	private String tokenConnection;
 	private String username;
 	private String email;
-	private Integer utilisateurId;
+	private Long utilisateurId;
 	
 	public DtoConnectionResponse() {
 		
 	}
 	
-	public DtoConnectionResponse(String tokenConnection, String username, Integer utilisateurId, String email) {
+	public DtoConnectionResponse(String tokenConnection, String username, Long utilisateurId, String email) {
 		this.tokenConnection = tokenConnection;
 		this.username = username;
 		this.utilisateurId = utilisateurId;
@@ -33,11 +33,11 @@ public class DtoConnectionResponse {
 		this.username = username;
 	}
 
-	public Integer getUtilisateurId() {
+	public Long getUtilisateurId() {
 		return utilisateurId;
 	}
 
-	public void setUtilisateurId(Integer utilisateurId) {
+	public void setUtilisateurId(Long utilisateurId) {
 		this.utilisateurId = utilisateurId;
 	}
 

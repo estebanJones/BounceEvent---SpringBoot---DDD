@@ -8,8 +8,11 @@ import bounceevent.infrastructure.repository.PersonneRepository;
 
 @Service
 public class PersonneService {
-	@Autowired
-	PersonneRepository personneRepository;
+	private PersonneRepository personneRepository;
+	
+	public PersonneService(PersonneRepository personneRepository) {
+		this.personneRepository = personneRepository;
+	}
 	
 	public Personne insertPersonne(Personne personne) {
 		return this.personneRepository.save(personne);

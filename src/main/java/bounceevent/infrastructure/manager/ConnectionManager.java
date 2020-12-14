@@ -1,4 +1,4 @@
-package bounceevent.infrastructure.services;
+package bounceevent.infrastructure.manager;
 
 import java.util.Optional;
 
@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.exception.EmailNotFoundException;
 import bounceevent.infrastructure.repository.UtilisateurRepository;
+import bounceevent.infrastructure.services.UtilisateurService;
 
 @Service
-public class ConnectionService  {
+public class ConnectionManager  {
 
 	private UtilisateurService utilisateurService;
 	private UtilisateurRepository utilisateurRepository;
 
 	
-	public ConnectionService( UtilisateurService utilisateurService, UtilisateurRepository utilisateurRepository) {
+	public ConnectionManager( UtilisateurService utilisateurService, UtilisateurRepository utilisateurRepository) {
 		this.utilisateurService = utilisateurService;
 		this.utilisateurRepository = utilisateurRepository;
 	}

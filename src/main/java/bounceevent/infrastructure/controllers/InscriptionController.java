@@ -14,17 +14,17 @@ import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoResponse;
 import bounceevent.infrastructure.exception.FormulaireIncompletException;
 import bounceevent.infrastructure.exception.RequeteErreurException;
+import bounceevent.infrastructure.manager.InscriptionManager;
 import bounceevent.infrastructure.poco.UtilisateurPoco;
-import bounceevent.infrastructure.services.InscriptionService;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/bounce_event")
 public class InscriptionController {
-	private InscriptionService inscriptionService;
+	private InscriptionManager inscriptionService;
 	private  UtilisateurPoco poco;
 	
-	public InscriptionController(InscriptionService inscriptionService, UtilisateurPoco poco) {
+	public InscriptionController(InscriptionManager inscriptionService, UtilisateurPoco poco) {
 		this.poco = poco;
 		this.inscriptionService = inscriptionService;
 	}

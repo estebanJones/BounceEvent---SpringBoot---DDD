@@ -1,18 +1,28 @@
 package bounceevent.domain.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import bounceevent.infrastructure.enums.ERole;
+
 @Entity
-@Table(name = "utilisateur")
 public class Utilisateur extends Personne {
 	private String username;
 	private String password;
 	private String email;
 	private String numeroPortable;
-	private String roles = "USER";
 	private boolean active;
+	
+	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
+	private List<RoleUtilisateur> roles = new ArrayList<>();
 	
 	@OneToOne
 	private Personne personne;
@@ -29,8 +39,6 @@ public class Utilisateur extends Personne {
 		this.email = email;
 		this.numeroPortable = numeroPortable;
 	}
-
-
 
 	public String getUsername() {
 		return username;
@@ -72,11 +80,11 @@ public class Utilisateur extends Personne {
 		this.personne = personne;
 	}
 
-	public String getRoles() {
+	public List<RoleUtilisateur> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(String roles) {
+	public void setRoles(List<RoleUtilisateur> roles) {
 		this.roles = roles;
 	}
 
@@ -87,8 +95,4 @@ public class Utilisateur extends Personne {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-
-	
-	
-	
 }
