@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -24,8 +26,8 @@ public class Utilisateur extends Personne {
 	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
 	private List<RoleUtilisateur> roles = new ArrayList<>();
 	
-	@OneToOne
-	private Personne personne;
+//	@OneToOne
+//	private Personne personne;
 	
 	
 	public Utilisateur() {
@@ -72,13 +74,13 @@ public class Utilisateur extends Personne {
 		this.numeroPortable = numeroPortable;
 	}
 
-	public Personne getPersonne() {
-		return personne;
-	}
-
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
-	}
+//	public Personne getPersonne() {
+//		return personne;
+//	}
+//
+//	public void setPersonne(Personne personne) {
+//		this.personne = personne;
+//	}
 
 	public List<RoleUtilisateur> getRoles() {
 		return roles;

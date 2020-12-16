@@ -11,19 +11,7 @@ import org.springframework.web.filter.CorsFilter;
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
 public class BounceEventApplication {
-	
-//	@Bean
-//	public WebMvcConfigurer corsConfigurer() {
-//		return new WebMvcConfigurer() {
-//			@Override
-//			public void addCorsMappings(CorsRegistry registry) {
-//				registry.addMapping("/**").allowedOrigins("http://localhost:4200").allowedMethods("GET", "POST", "PATCH", "PUT", "OPTIONS")
-//						.allowCredentials(true);
-//				;
-//			}
-//		};
-//	}
-	
+
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

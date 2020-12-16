@@ -4,11 +4,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bounceevent.domain.entities.Personne;
-import bounceevent.domain.entities.RoleUtilisateur;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoResponse;
-import bounceevent.infrastructure.enums.ERole;
 import bounceevent.infrastructure.services.PersonneService;
 import bounceevent.infrastructure.services.UtilisateurService;
 

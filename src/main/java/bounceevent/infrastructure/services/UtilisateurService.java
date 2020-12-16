@@ -19,16 +19,18 @@ import bounceevent.infrastructure.repository.UtilisateurRepository;
 public class UtilisateurService {
 	private UtilisateurRepository utilisateurRepository;
 	private PersonneRepository personneRepository;
+	private UtilisateurBuilder utilisateurBuilder;
 	
-	public UtilisateurService(UtilisateurRepository utilisateurRepository, PersonneRepository personneRepository) {
+	public UtilisateurService(UtilisateurRepository utilisateurRepository, PersonneRepository personneRepository,  UtilisateurBuilder utilisateurBuilder) {
 		this.utilisateurRepository = utilisateurRepository;
 		this.personneRepository = personneRepository;
+		this.utilisateurBuilder = utilisateurBuilder;
 	}
 	
 	@Transactional
 	public Utilisateur insertUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
 		Utilisateur utilisateur = this.createUtilisateur(registerDto, personne);
-		this.personneRepository.save(personne);
+		//this.insertPersonne(personne);
 		return this.utilisateurRepository.save(utilisateur);
 	}
 	
@@ -36,22 +38,15 @@ public class UtilisateurService {
 		return this.utilisateurRepository.findByEmail(email);
 	}
 	private Utilisateur createUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
-		 UtilisateurBuilder utilisateurBuilder = new UtilisateurBuilder(personne.getNom(), personne.getPrenom(), personne.getAge(), registerDto.getUsername(), 
-				registerDto.getPassword(),  registerDto.getEmail(), registerDto.getNumeroPortable());
-		utilisateurBuilder.appendPersonne(personne);
-		utilisateurBuilder.appendRole(new RoleUtilisateur(ERole.ROLE_UTILISATEUR), utilisateurBuilder.get());
-//		Utilisateur utilisateur = new Utilisateur(
-//				personne.getNom(), 
-//			    personne.getPrenom(), 
-//			    personne.getAge(), 
-//			    registerDto.getUsername(), 
-//			    registerDto.getPassword(), 
-//			    registerDto.getEmail(), 
-//			    registerDto.getNumeroPortable()
-//		);
-//		utilisateur.setPersonne(personne);
-		return utilisateurBuilder.get();
+//		 UtilisateurBuilder utilisateurBuilder = new UtilisateurBuilder(personne.getNom(), personne.getPrenom(), personne.getAge(), registerDto.getUsername(), 
+//				registerDto.getPassword(),  registerDto.getEmail(), registerDto.getNumeroPortable());
+//		utilisateurBuilder.appendPersonne(personne);
+//		utilisateurBuilder.appendRole(, utilisateurBuilder.get());
+		return this.utilisateurBuilder.build(registerDto, personne, new RoleUtilisateur(ERole.ROLE_UTILISATEUR));
 	}
 	
-
+	@Transactional
+	public Personne insertPersonne(Personne personne) {
+		return this.personneRepository.save(personne);
+	}
 }

@@ -7,7 +7,6 @@ import javax.persistence.Table;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "personne")
 public class Personne extends BaseEntite {
 	private String nom;
 	private String prenom;

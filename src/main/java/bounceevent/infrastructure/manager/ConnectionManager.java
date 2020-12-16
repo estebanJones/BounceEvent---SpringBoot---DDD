@@ -7,17 +7,13 @@ import org.springframework.stereotype.Service;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.exception.EmailNotFoundException;
 import bounceevent.infrastructure.repository.UtilisateurRepository;
-import bounceevent.infrastructure.services.UtilisateurService;
 
 @Service
 public class ConnectionManager  {
-
-	private UtilisateurService utilisateurService;
 	private UtilisateurRepository utilisateurRepository;
 
 	
-	public ConnectionManager( UtilisateurService utilisateurService, UtilisateurRepository utilisateurRepository) {
-		this.utilisateurService = utilisateurService;
+	public ConnectionManager(UtilisateurRepository utilisateurRepository) {
 		this.utilisateurRepository = utilisateurRepository;
 	}
 	
@@ -40,8 +36,4 @@ public class ConnectionManager  {
 			throw new EmailNotFoundException("Email ou mot de passe incorrect");
 		}
 	}
-	
-//	private boolean controleMotDePasse(CharSequence passwordCoteClient, String passwordEncode) {
-//		return this.passwordEncoder.matches(passwordCoteClient, passwordEncode);
-//	}
 }
