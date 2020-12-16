@@ -30,7 +30,6 @@ public class UtilisateurService {
 	@Transactional
 	public Utilisateur insertUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
 		Utilisateur utilisateur = this.createUtilisateur(registerDto, personne);
-		//this.insertPersonne(personne);
 		return this.utilisateurRepository.save(utilisateur);
 	}
 	
@@ -38,10 +37,6 @@ public class UtilisateurService {
 		return this.utilisateurRepository.findByEmail(email);
 	}
 	private Utilisateur createUtilisateur(RegisterDtoRequest registerDto, Personne personne) {
-//		 UtilisateurBuilder utilisateurBuilder = new UtilisateurBuilder(personne.getNom(), personne.getPrenom(), personne.getAge(), registerDto.getUsername(), 
-//				registerDto.getPassword(),  registerDto.getEmail(), registerDto.getNumeroPortable());
-//		utilisateurBuilder.appendPersonne(personne);
-//		utilisateurBuilder.appendRole(, utilisateurBuilder.get());
 		return this.utilisateurBuilder.build(registerDto, personne, new RoleUtilisateur(ERole.ROLE_UTILISATEUR));
 		
 	}

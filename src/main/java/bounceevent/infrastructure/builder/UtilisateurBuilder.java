@@ -19,15 +19,10 @@ public class UtilisateurBuilder {
 		this.utilisateur = new Utilisateur(registerDto.getNom(), registerDto.getPrenom(), registerDto.getAge(), registerDto.getUsername(), 
 				registerDto.getPassword(), registerDto.getEmail(), registerDto.getNumeroPortable());
 		
-		this.appendPersonne(personne);
 		this.appendRole(role);
 		return this.get();
 	}
-	
-	private UtilisateurBuilder appendPersonne(Personne personne) {
-		//this.utilisateur.setPersonne(personne);
-		return this;
-	}
+
 	
 	private UtilisateurBuilder appendRole(RoleUtilisateur role) {
 		role.setUtilisateur(this.utilisateur);
