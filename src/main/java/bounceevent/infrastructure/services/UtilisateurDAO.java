@@ -16,12 +16,12 @@ import bounceevent.infrastructure.repository.PersonneRepository;
 import bounceevent.infrastructure.repository.UtilisateurRepository;
 
 @Service
-public class UtilisateurService {
+public class UtilisateurDAO {
 	private UtilisateurRepository utilisateurRepository;
 	private PersonneRepository personneRepository;
 	private UtilisateurBuilder utilisateurBuilder;
 	
-	public UtilisateurService(UtilisateurRepository utilisateurRepository, PersonneRepository personneRepository,  UtilisateurBuilder utilisateurBuilder) {
+	public UtilisateurDAO(UtilisateurRepository utilisateurRepository, PersonneRepository personneRepository,  UtilisateurBuilder utilisateurBuilder) {
 		this.utilisateurRepository = utilisateurRepository;
 		this.personneRepository = personneRepository;
 		this.utilisateurBuilder = utilisateurBuilder;

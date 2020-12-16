@@ -24,10 +24,9 @@ public class UtilisateurBuilder {
 	}
 
 	
-	private UtilisateurBuilder appendRole(RoleUtilisateur role) {
+	private void appendRole(RoleUtilisateur role) {
 		role.setUtilisateur(this.utilisateur);
 		this.utilisateur.getRoles().add(role);
-		return this;
 	}
 	
 	private Utilisateur get() {
