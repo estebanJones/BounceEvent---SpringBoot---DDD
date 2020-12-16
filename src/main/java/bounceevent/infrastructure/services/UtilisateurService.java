@@ -43,6 +43,7 @@ public class UtilisateurService {
 //		utilisateurBuilder.appendPersonne(personne);
 //		utilisateurBuilder.appendRole(, utilisateurBuilder.get());
 		return this.utilisateurBuilder.build(registerDto, personne, new RoleUtilisateur(ERole.ROLE_UTILISATEUR));
+		
 	}
 	
 	@Transactional
