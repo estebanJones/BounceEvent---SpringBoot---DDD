@@ -62,24 +62,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				// désactivation CSRF
-				.csrf()
-					.disable()
+				.csrf().disable()
 					// support de requêtes Cross-Domain pour Spring Security
 					// cette configuration permet d'utiliser les règles CORS de Spring MVC
-					.cors()
-				.and()
+				.cors().and()
 				// Suppression du cookie JSESSIONID
 				// nous ne souhaitons pas de stockage d'état côté serveur
 
 					.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 					// en cas d'erreur, un code 403 est envoyé
-					.exceptionHandling()
-					.authenticationEntryPoint(
-							(request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
+					.exceptionHandling().authenticationEntryPoint((request, response, authException) -> response.setStatus(HttpServletResponse.SC_FORBIDDEN))
 				.and()
-					// toutes les requêtes doivent être authentifiées
-					.authorizeRequests() // toutes les requêtes doivent être authentifiées
-					.antMatchers("/bounce_event/**")
+					
+					.authorizeRequests() //
+					.antMatchers("/bounce_event/register")
 					.permitAll()
 					.anyRequest()
 					.authenticated()
@@ -113,10 +109,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.logoutSuccessHandler((req, resp, auth) -> resp.setStatus(HttpServletResponse.SC_OK))
 					// suppression du cookie d'authentification
 					.deleteCookies(TOKEN_COOKIE);
-		http.headers()
-			.frameOptions()
-			.sameOrigin();
+		http.headers().frameOptions().sameOrigin();
 	}
-	
-	
 }

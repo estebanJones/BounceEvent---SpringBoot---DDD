@@ -1,33 +1,35 @@
 package bounceevent.infrastructure.builder;
 
+import org.springframework.stereotype.Component;
+
 import bounceevent.domain.entities.Personne;
 import bounceevent.domain.entities.RoleUtilisateur;
 import bounceevent.domain.entities.Utilisateur;
+import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 
-
+@Component
 public class UtilisateurBuilder {
 	private Utilisateur utilisateur;
 	
-	public UtilisateurBuilder(String nom, String prenom, Integer age, String username, String password, String email, String numeroPortable) {
-		this.utilisateur = new Utilisateur(nom, prenom, age, username, password, email, numeroPortable);
-	}
-	
 	public UtilisateurBuilder() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
-	public UtilisateurBuilder appendPersonne(Personne personne) {
-		this.utilisateur.setPersonne(personne);
-		return this;
+	public Utilisateur build(RegisterDtoRequest registerDto, Personne personne, RoleUtilisateur role) {
+		this.utilisateur = new Utilisateur(registerDto.getNom(), registerDto.getPrenom(), registerDto.getAge(), registerDto.getUsername(), 
+				registerDto.getPassword(), registerDto.getEmail(), registerDto.getNumeroPortable());
+		
+		this.appendRole(role);
+		return this.get();
 	}
+
 	
-	public UtilisateurBuilder appendRole(RoleUtilisateur role, Utilisateur utilisateur) {
+	private void appendRole(RoleUtilisateur role) {
 		role.setUtilisateur(this.utilisateur);
 		this.utilisateur.getRoles().add(role);
-		return this;
 	}
 	
-	public Utilisateur get() {
+	private Utilisateur get() {
 		return this.utilisateur;
 	}
 }

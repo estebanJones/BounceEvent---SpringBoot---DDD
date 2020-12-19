@@ -5,13 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import bounceevent.infrastructure.enums.ERole;
 
 @Entity
 public class Utilisateur extends Personne {
@@ -23,10 +17,6 @@ public class Utilisateur extends Personne {
 	
 	@OneToMany(mappedBy = "utilisateur", cascade = CascadeType.PERSIST)
 	private List<RoleUtilisateur> roles = new ArrayList<>();
-	
-	@OneToOne
-	private Personne personne;
-	
 	
 	public Utilisateur() {
 		super();
@@ -70,14 +60,6 @@ public class Utilisateur extends Personne {
 
 	public void setNumeroPortable(String numeroPortable) {
 		this.numeroPortable = numeroPortable;
-	}
-
-	public Personne getPersonne() {
-		return personne;
-	}
-
-	public void setPersonne(Personne personne) {
-		this.personne = personne;
 	}
 
 	public List<RoleUtilisateur> getRoles() {

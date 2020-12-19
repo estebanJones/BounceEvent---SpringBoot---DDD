@@ -4,36 +4,33 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import bounceevent.domain.entities.Personne;
-import bounceevent.domain.entities.RoleUtilisateur;
 import bounceevent.domain.entities.Utilisateur;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoRequest;
 import bounceevent.infrastructure.dto.inscription.RegisterDtoResponse;
-import bounceevent.infrastructure.enums.ERole;
 import bounceevent.infrastructure.services.PersonneService;
-import bounceevent.infrastructure.services.UtilisateurService;
+import bounceevent.infrastructure.services.UtilisateurDAO;
 
 
 @Service
 public class InscriptionManager {
-	private UtilisateurService utilisateurService;
+	private UtilisateurDAO utilisateurDAO;
 	private PersonneService personneService;
 	private PasswordEncoder passwordEncoder;
 	
-	public InscriptionManager(UtilisateurService utilisateurService, PersonneService personneService, PasswordEncoder passwordEncoder) {
-		this.utilisateurService = utilisateurService;
+	public InscriptionManager(UtilisateurDAO utilisateurDAO, PersonneService personneService, PasswordEncoder passwordEncoder) {
+		this.utilisateurDAO = utilisateurDAO;
 		this.personneService = personneService;
 		this.passwordEncoder = passwordEncoder;
 	}
 	
 	public RegisterDtoResponse inscription(RegisterDtoRequest dtoRequest) {
 		Personne personne = new Personne(dtoRequest.getNom(), dtoRequest.getPrenom(), dtoRequest.getAge());
-		String op = dtoRequest.getPassword();
-		dtoRequest.setPassword(this.encodePassword(dtoRequest.getPassword()));
-		Utilisateur utilisateur = this.utilisateurService.insertUtilisateur(dtoRequest, personne);
+		this.encodePassword(dtoRequest);
+		Utilisateur utilisateur = this.utilisateurDAO.insertUtilisateur(dtoRequest, personne);
 		return new RegisterDtoResponse(utilisateur);
 	}
 	
-	private String encodePassword(String password) {
-		return this.passwordEncoder.encode(password);
+	private void encodePassword(RegisterDtoRequest dtoRequest) {
+		dtoRequest.setPassword(this.passwordEncoder.encode(dtoRequest.getPassword()));
 	}
 }

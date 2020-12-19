@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import bounceevent.domain.entities.Utilisateur;
-import bounceevent.infrastructure.services.UtilisateurService;
+import bounceevent.infrastructure.services.UtilisateurDAO;
 
 @RestController
 @CrossOrigin
 @RequestMapping("/bounce_event")
 public class ProfilController {
-	private UtilisateurService utilisateurService;
+	private UtilisateurDAO utilisateurService;
 	
-	public ProfilController(UtilisateurService utilisateurService) {
+	public ProfilController(UtilisateurDAO utilisateurService) {
 		this.utilisateurService = utilisateurService;
 	}
 	@GetMapping("/profil/{email}")
